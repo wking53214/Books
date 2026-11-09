@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "RACE Desk",
+      "hasCanvas": false,
+      "bodyTextLen": 2288,
+      "bodyTextHash": "df2c1bbf31ab8e653c93c39249be94d6f64f8b0087e7ea58a527021e53dfd582",
+      "bodyTextPrefix": "STACK RACE RACE Desk Design instrument · no source research auth",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "RACE Desk",
+      "hasCanvas": false,
+      "bodyTextLen": 2288,
+      "bodyTextHash": "df2c1bbf31ab8e653c93c39249be94d6f64f8b0087e7ea58a527021e53dfd582",
+      "bodyTextPrefix": "STACK RACE RACE Desk Design instrument · no source research auth",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

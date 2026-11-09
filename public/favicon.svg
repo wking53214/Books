@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="RACE Desk">
+  <rect width="32" height="32" rx="6" fill="#141816"/>
+  <rect x="7" y="4.5" width="18" height="23" rx="1.4" fill="#F3EAD7"/>
+  <rect x="7" y="4.5" width="18" height="7" rx="1.4" fill="#C4513A"/>
+  <rect x="7" y="9.2" width="18" height="2.3" fill="#C4513A"/>
+  <rect x="10.5" y="15.2" width="11" height="2.8" rx="0.3" fill="#7EA18A"/>
+  <rect x="10.5" y="20.4" width="8" height="2.4" rx="0.3" fill="#141816" opacity="0.55"/>
+</svg>
