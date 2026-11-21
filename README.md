@@ -69,7 +69,7 @@ These were found while preparing this README and are recorded, not fixed.
 
 ## License
 
-No `LICENSE` file is present in this repository. The license is UNKNOWN. The other repositories in this library are Apache-2.0, and adding a license file here is the owner's decision.
+Apache-2.0, copyright William N. King (see `LICENSE` and `NOTICE`). This is the current state and matches the other repositories in this library. Material under `.grok/skills/` is third-party and keeps its own license files.
 
 ## Maintenance
 
