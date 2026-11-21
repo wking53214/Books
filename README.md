@@ -33,7 +33,7 @@ Exported prototype. The history is a single commit, "Export from Grok". Nothing 
 Requires Node 22 and npm.
 
 ```
-npm install --no-package-lock --ignore-scripts   # see "Known issues": npm ci fails
+npm ci --ignore-scripts
 npm run dev                                      # serves on 0.0.0.0:8080
 npm run build                                    # also runs npm run db:migrate
 npm run typecheck
@@ -44,22 +44,20 @@ I did not run `npm run dev` or `npm run build` for this README. The development 
 
 ## Testing
 
-- **EXECUTED 2026-11-15 at `9a4dd60`, Node 22.23.4, packages installed with `npm install --no-package-lock --ignore-scripts`:**
-  - `node --test 'scripts/**/*.test.mjs'`: 197 tests, 189 passed, 8 failed.
+- **EXECUTED 2026-11-21 at `aa6bcb6`, Node 22.23.5, packages installed with `npm ci --ignore-scripts`:**
+  - `npm test`: exit code 0.
+  - `node --test 'scripts/**/*.test.mjs'`: 197 tests, 197 passed, 0 failed.
   - `node --experimental-strip-types --test` on the five `src/lib` test files named in `package.json`: 59 tests, 59 passed.
   - `npm run typecheck`: no errors printed.
-- Because `npm test` chains the two commands with `&&`, the first command's failures stop it, so `npm test` as written exits non-zero here.
 - Not run: lint (`npm run lint`), the build, the browser smoke scripts, the development server.
 - No test file targets `src/lib/race/` (the desk's own logic).
 
 ## Known issues
 
-These were found while preparing this README and are recorded, not fixed.
+These are recorded, not fixed. Two earlier entries (a lock file that did not match `package.json`, and eight failing tests in `scripts/grok-pwa-plugin.test.mjs`) no longer apply: on 2026-11-21 `npm ci` works and all 197 script tests pass.
 
-1. **The lock file does not match `package.json`.** `npm ci` stops with "lock file's ajv@6.15.0 does not satisfy ajv@8.20.0". A reproducible install is not possible from the committed lock file.
-2. **Eight tests in `scripts/grok-pwa-plugin.test.mjs` fail.** They came with the App Builder template. They pass in sample names ("Wild Race", "Hello World") and expect the page's share title to follow them, but the code they exercise also picks up this app's own title, "RACE Desk", from `src/lib/og/site.json`. With the title taken out of a scratch copy of that file, six of the eight pass (EXECUTED 2026-11-18). The other two still fail; the likely cause is this app's own share-card image (INFERRED, not confirmed). "Wild Race" is a sample name in the tests, not an earlier name of this app.
-3. **A client secret is committed (owner action).** `src/lib/auth/preview.ts` held a literal OAuth client secret (the constant `PREVIEW_CLIENT_SECRET`) as a fallback for `GROK_AUTH_CLIENT_SECRET`. As of 2026-11-19 the literal is removed from the code and `src/lib/auth/server.ts` reads `GROK_PREVIEW_CLIENT_SECRET` from the environment instead; without either setting, live-preview sign-in is not configured. The old value is still in git history, so rotate it on the broker side and treat it as public (owner action). It is in the only commit, and on 2026-11-18 this repository could be cloned with no access granted, so the value should be treated as public. The file's own comment describes it as the App Builder's shared preview client, accepted only for `*.grok-sandbox.com` addresses and rotated on the vendor's side. That description is REPORTED and was not tested. No other secret-shaped literal was found in the tracked files, and the committed build under `.vercel/output/` does not contain this one (EXECUTED search, 2026-11-18). The 2026-11-15 version of this README said no literal secret was in the working tree. That was wrong. The owner cannot rotate this value alone. The choices are to remove the constant and its fallback (a code change), to make the repository private, or to accept it as a vendor default. The value is not repeated here.
-4. **The desk's state is stored in the browser.** There is no server-side record of briefs, drills or the ledger, so nothing a person enters here is a durable or verifiable record.
+1. **A client secret is committed (owner action).** `src/lib/auth/preview.ts` held a literal OAuth client secret (the constant `PREVIEW_CLIENT_SECRET`) as a fallback for `GROK_AUTH_CLIENT_SECRET`. As of 2026-11-19 the literal is removed from the code and `src/lib/auth/server.ts` reads `GROK_PREVIEW_CLIENT_SECRET` from the environment instead; without either setting, live-preview sign-in is not configured. The old value is still in git history, so rotate it on the broker side and treat it as public (owner action). It is in the only commit, and on 2026-11-18 this repository could be cloned with no access granted, so the value should be treated as public. The file's own comment describes it as the App Builder's shared preview client, accepted only for `*.grok-sandbox.com` addresses and rotated on the vendor's side. That description is REPORTED and was not tested. No other secret-shaped literal was found in the tracked files, and the committed build under `.vercel/output/` does not contain this one (EXECUTED search, 2026-11-18). The 2026-11-15 version of this README said no literal secret was in the working tree. That was wrong. The owner cannot rotate this value alone. The choices are to remove the constant and its fallback (a code change), to make the repository private, or to accept it as a vendor default. The value is not repeated here.
+2. **The desk's state is stored in the browser.** There is no server-side record of briefs, drills or the ledger, so nothing a person enters here is a durable or verifiable record.
 
 ## Limitations
 
